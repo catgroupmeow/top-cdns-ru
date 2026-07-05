@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✦ TOP CDN RU — сравнение CDN для России</title>
+    <link rel="preconnect" href="https://yastatic.net" crossorigin />
+    <link href="https://yastatic.net/fonts/Inter/Inter.css" rel="stylesheet" />
+    <link href="https://yastatic.net/fonts/CormorantGaramond/CormorantGaramond.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-body: #0a0a0a;
+            --bg-card: rgba(20, 18, 14, 0.65);
+            --bg-card-hover: rgba(212, 175, 55, 0.06);
+            --text-primary: #f5e7c8;
+            --text-secondary: #e5d9c5;
+            --text-muted: #b8a58a;
+            --accent: #d4af37;
+            --accent-dim: rgba(212, 175, 55, 0.18);
+            --border-color: rgba(212, 175, 55, 0.25);
+            --shadow-glow: rgba(212, 175, 55, 0.15);
+            --code-bg: #0d0b09;
+            --badge-bg: rgba(212, 175, 55, 0.12);
+            --badge-border: rgba(212, 175, 55, 0.25);
+            --ip-card-bg: rgba(10, 10, 10, 0.6);
+            --ip-card-border: rgba(212, 175, 55, 0.15);
+            --particle-hue: 38;
+            --table-header: #1a1712;
+            --table-row-even: rgba(20, 18, 14, 0.4);
+            --table-row-odd: rgba(10, 10, 10, 0.3);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg-body);
+            color: var(--text-secondary);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 30% 40%, var(--bg-body) 0%, var(--bg-body) 80%);
+            transition: background 0.5s ease;
+        }
+        .app {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+        .logo h1 {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-weight: 700;
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #f7e05e 0%, var(--accent) 40%, #b8860b 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 40px var(--shadow-glow);
+        }
+        .logo .sub {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            -webkit-text-fill-color: var(--text-muted);
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .theme-selector {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .theme-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .theme-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .theme-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0a;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin: 2.5rem 0 0.8rem;
+        }
+        .section-title .gold { color: var(--accent); }
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 1.8rem;
+            transition: background 0.4s, border-color 0.4s;
+            overflow-x: auto;
+        }
+        .card:hover { border-color: var(--accent); }
+        .card p, .card li { color: var(--text-secondary); }
+
+        /* Таблица */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 0 -0.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 700px;
+        }
+        table th {
+            background: var(--table-header);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 0.7rem;
+            padding: 0.8rem 0.6rem;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+        table td {
+            padding: 0.7rem 0.6rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+        }
+        table tr:nth-child(even) td {
+            background: var(--table-row-even);
+        }
+        table tr:nth-child(odd) td {
+            background: var(--table-row-odd);
+        }
+        table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+        table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+            white-space: nowrap;
+        }
+        .best {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .provider-link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+            transition: opacity 0.2s;
+        }
+        .provider-link:hover { opacity: 0.7; }
+
+        /* Рейтинг */
+        .rank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .rank-item {
+            background: var(--ip-card-bg);
+            border: 1px solid var(--ip-card-border);
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.2s;
+        }
+        .rank-item:hover { border-color: var(--accent); }
+        .rank-item .provider {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .rank-item .wins {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Сценарии */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .scenario-item {
+            background: var(--ip-card-bg);
+            border: 1px solid var(--ip-card-border);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            transition: border-color 0.2s;
+        }
+        .scenario-item:hover { border-color: var(--accent); }
+        .scenario-item .label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .scenario-item .value {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: border-color 0.3s;
+        }
+        .footer p { margin: 0.4rem 0; }
+        .footer .disclaimer {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0.8rem auto 0;
+            line-height: 1.5;
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header { flex-direction: column; align-items: flex-start; }
+            .logo h1 { font-size: 2rem; }
+            .card { padding: 1.2rem 1.2rem; }
+            .section-title { font-size: 1.5rem; }
+            .theme-selector { gap: 0.2rem; }
+            .theme-btn { font-size: 0.55rem; padding: 0.2rem 0.6rem; }
+            .scenario-grid { grid-template-columns: 1fr; }
+            table { font-size: 0.7rem; min-width: 600px; }
+            table th, table td { padding: 0.4rem 0.3rem; }
+        }
+        @media (max-width: 480px) {
+            table { font-size: 0.6rem; min-width: 500px; }
+        }
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius:10px; }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+    <div class="app">
+        <header class="header">
+            <div class="logo">
+                <h1>✦ TOP CDN RU</h1>
+                <span class="sub">сравнение CDN-провайдеров для России</span>
+            </div>
+            <div class="header-controls">
+                <span class="badge">🔮 v1.0</span>
+                <span class="badge">📊 12 провайдеров</span>
+                <span class="badge">🌍 9 регионов</span>
+                <div class="theme-selector" id="themeSelector">
+                    <button class="theme-btn active" data-theme="gold">Gold</button>
+                    <button class="theme-btn" data-theme="platinum">Platinum</button>
+                    <button class="theme-btn" data-theme="aurora">Aurora</button>
+                    <button class="theme-btn" data-theme="dark">Dark Emperor</button>
+                    <button class="theme-btn" data-theme="light">Light Crown</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Описание -->
+        <div class="card" style="text-align:center; padding:1.2rem 1.5rem;">
+            <p style="font-size:1rem; color:var(--text-secondary);">
+                ⚡ <strong style="color:var(--text-primary);">Время отклика</strong> в секундах. Чем меньше – тем лучше.<br />
+                55+ точек по всему миру. Тесты на реальных CDN-доменах (с учётом редиректов и ошибок).[reference:1]
+            </p>
+        </div>
+
+        <!-- Таблица -->
+        <h3 class="section-title"><span class="gold">◈</span> Таблица лучших значений (в секундах)</h3>
+        <div class="card">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Провайдер</th>
+                            <th>Москва, Россия</th>
+                            <th>Санкт-Петербург, Россия</th>
+                            <th>Франкфурт, Германия</th>
+                            <th>Нью‑Йорк, США</th>
+                            <th>Сингапур</th>
+                            <th>Токио, Япония</th>
+                            <th>Сан-Паулу, Бразилия</th>
+                            <th>Дубай, ОАЭ</th>
+                            <th>Тель-Авив, Израиль</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- заполняется JS -->
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">
+                <span class="best">●</span> Жирным выделены лучшие значения в каждом столбце.[reference:2]
+            </p>
+        </div>
+
+        <!-- Рейтинг -->
+        <h3 class="section-title"><span class="gold">◈</span> Полный рейтинг провайдеров</h3>
+        <div class="card">
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.8rem;">
+                По количеству региональных побед[reference:3]
+            </p>
+            <div class="rank-grid" id="rankGrid">
+                <!-- заполняется JS -->
+            </div>
+        </div>
+
+        <!-- Сценарии -->
+        <h3 class="section-title"><span class="gold">◈</span> Как выбрать?</h3>
+        <div class="card">
+            <div class="scenario-grid" id="scenarioGrid">
+                <!-- заполняется JS -->
+            </div>
+            <p style="margin-top:0.8rem; font-size:0.75rem; color:var(--text-muted);">
+                * Провайдер <strong style="color:var(--text-secondary);">mws cloud CDN</strong> не показал лучших результатов, но может быть полезен при специальных условиях от МТС.[reference:4]
+            </p>
+        </div>
+
+        <!-- Методология -->
+        <h3 class="section-title"><span class="gold">◈</span> Методология тестирования</h3>
+        <div class="card">
+            <ul style="list-style:none; padding:0; color:var(--text-secondary); font-size:0.9rem;">
+                <li style="padding:0.3rem 0; border-bottom:1px solid var(--border-color);">
+                    <span style="color:var(--accent);">▸</span> <strong style="color:var(--text-primary);">Точки проверки:</strong> более 55 локаций по всему миру (Европа, Азия, Северная и Южная Америка, Ближний Восток).[reference:5]
+                </li>
+                <li style="padding:0.3rem 0; border-bottom:1px solid var(--border-color);">
+                    <span style="color:var(--accent);">▸</span> <strong style="color:var(--text-primary);">Объект проверки:</strong> публичные тестовые эндпоинты каждого CDN.[reference:6]
+                </li>
+                <li style="padding:0.3rem 0; border-bottom:1px solid var(--border-color);">
+                    <span style="color:var(--accent);">▸</span> <strong style="color:var(--text-primary);">Измеряемый параметр:</strong> полное время ответа (TTFB) в секундах, включая редиректы и ошибки.[reference:7]
+                </li>
+                <li style="padding:0.3rem 0; border-bottom:1px solid var(--border-color);">
+                    <span style="color:var(--accent);">▸</span> <strong style="color:var(--text-primary);">Обработка данных:</strong> для каждого региона взято минимальное значение из всех доступных тестов.[reference:8]
+                </li>
+                <li style="padding:0.3rem 0;">
+                    <span style="color:var(--accent);">▸</span> <strong style="color:var(--text-primary);">Критерий включения:</strong> провайдеры, имеющие собственные серверы в РФ или официально работающие с российским трафиком.[reference:9]
+                </li>
+            </ul>
+        </div>
+
+        <!-- Дальнейшие шаги -->
+        <h3 class="section-title"><span class="gold">◈</span> Дальнейшие шаги</h3>
+        <div class="card">
+            <ol style="padding-left:1.2rem; color:var(--text-secondary); font-size:0.9rem;">
+                <li style="padding:0.3rem 0;"><strong style="color:var(--text-primary);">Проверьте самостоятельно</strong> – запросите тестовый доступ у двух-трёх лидеров для вашего региона.[reference:10]</li>
+                <li style="padding:0.3rem 0;"><strong style="color:var(--text-primary);">Протестируйте с реальными файлами</strong> (изображения, JavaScript, видео) – задержка может отличаться от времени на тестовых эндпоинтах.[reference:11]</li>
+            </ol>
+        </div>
+
+        <!-- Отказ -->
+        <div style="margin-top:3rem; padding:1.2rem 1.8rem; border:1px solid var(--border-color); border-radius:16px; background:var(--bg-card);">
+            <p style="font-size:0.75rem; color:var(--text-muted); text-align:center;">
+                <strong style="color:var(--accent);">⚖️ Отказ от ответственности</strong><br />
+                Данные получены из открытых источников и предоставлены «как есть». Результаты могут отличаться в зависимости от времени суток, загрузки сети и других факторов.
+            </p>
+        </div>
+
+        <footer class="footer">
+            <p>© catgroupmeow все права защищены</p>
+            <div class="disclaimer">
+                Проект не аффилирован с указанными провайдерами. Данные носят справочный характер.
+                <br /><a href="https://github.com/catgroupmeow/top-cdns-ru" target="_blank">github.com/catgroupmeow/top-cdns-ru</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Частицы
+            var canvas = document.getElementById('particles-canvas');
+            var ctx = canvas.getContext('2d');
+            var width, height, particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            function Particle() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2.2 + 0.6;
+                this.speedX = (Math.random() - 0.5) * 0.25;
+                this.speedY = (Math.random() - 0.5) * 0.25;
+                this.opacity = Math.random() * 0.5 + 0.15;
+                this.hue = 38 + Math.random() * 18;
+                this.saturation = 70 + Math.random() * 30;
+                this.lightness = 50 + Math.random() * 35;
+            }
+
+            Particle.prototype.update = function() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            };
+
+            Particle.prototype.draw = function() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'hsla(' + this.hue + ', ' + this.saturation + '%, ' + this.lightness + '%, ' + this.opacity + ')';
+                ctx.fill();
+                if (this.size > 1.8) {
+                    ctx.shadowColor = 'hsla(' + this.hue + ', 100%, 70%, 0.12)';
+                    ctx.shadowBlur = 16;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            };
+
+            function initParticles(count) {
+                count = count || 220;
+                particles = [];
+                for (var i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    p.update();
+                    p.draw();
+                }
+                if (Math.random() < 0.008) {
+                    var spark = new Particle();
+                    spark.size = 3 + Math.random() * 4;
+                    spark.opacity = 0.6 + Math.random() * 0.4;
+                    spark.lightness = 75 + Math.random() * 25;
+                    particles.push(spark);
+                }
+                if (particles.length > 380) {
+                    particles.splice(0, 20);
+                }
+                requestAnimationFrame(animate);
+            }
+
+            initParticles(200);
+            animate();
+
+            // ---------- Данные из README ----------
+            var providers = [
+                { name: 'DDoS-Guard', moscow: 0.017, spb: 0.072, frankfurt: 0.021, ny: 0.161, singapore: 0.375, tokyo: 0.355, saopaulo: 0.468, dubai: 0.441, telaviv: 0.195 },
+                { name: 'Yandex Cloud CDN', moscow: 0.043, spb: 0.022, frankfurt: 0.227, ny: 0.353, singapore: 0.384, tokyo: 0.614, saopaulo: 0.453, dubai: 0.343, telaviv: 0.222 },
+                { name: 'VK Cloud CDN', moscow: 0.194, spb: 0.233, frankfurt: 0.013, ny: 0.419, singapore: 0.706, tokyo: 2.022, saopaulo: 1.959, dubai: 0.466, telaviv: 0.783 },
+                { name: 'Beeline (CDNvideo)', moscow: 0.027, spb: 0.074, frankfurt: 0.139, ny: 0.219, singapore: 1.024, tokyo: 1.435, saopaulo: 0.453, dubai: 0.296, telaviv: 0.305 },
+                { name: 'Storm Networks', moscow: 0.076, spb: 0.089, frankfurt: 0.065, ny: 0.229, singapore: 0.283, tokyo: 0.851, saopaulo: 1.595, dubai: 0.866, telaviv: 0.259 },
+                { name: 'Mitelis', moscow: 0.130, spb: 0.286, frankfurt: 0.084, ny: 0.616, singapore: 0.496, tokyo: 0.739, saopaulo: 0.607, dubai: 0.477, telaviv: 0.617 },
+                { name: 'Ngenix', moscow: 0.024, spb: 0.086, frankfurt: 0.132, ny: 0.356, singapore: 0.878, tokyo: 0.847, saopaulo: 0.734, dubai: 0.488, telaviv: 0.334 },
+                { name: 'EdgeCenter', moscow: 0.030, spb: 0.513, frankfurt: 0.279, ny: 0.430, singapore: 1.789, tokyo: 1.039, saopaulo: 2.695, dubai: 2.499, telaviv: 1.446 },
+                { name: 'Cloud.ru', moscow: 0.111, spb: 0.154, frankfurt: 0.247, ny: 0.685, singapore: 1.148, tokyo: 1.036, saopaulo: 1.338, dubai: 0.533, telaviv: 0.419 },
+                { name: 'CDNnow!', moscow: 0.095, spb: 0.065, frankfurt: 0.016, ny: 0.338, singapore: 0.795, tokyo: 0.649, saopaulo: 0.681, dubai: 0.397, telaviv: 0.104 },
+                { name: 'Servicepipe', moscow: 0.047, spb: 0.082, frankfurt: 0.035, ny: 1.401, singapore: 0.315, tokyo: 0.792, saopaulo: 0.957, dubai: 0.398, telaviv: 0.214 },
+                { name: 'mws cloud CDN', moscow: 0.265, spb: 0.195, frankfurt: 0.240, ny: 0.849, singapore: 1.806, tokyo: 1.822, saopaulo: 1.053, dubai: 0.768, telaviv: 0.559 }
+            ];
+
+            var regions = [
+                { key: 'moscow', label: 'Москва, Россия' },
+                { key: 'spb', label: 'Санкт-Петербург, Россия' },
+                { key: 'frankfurt', label: 'Франкфурт, Германия' },
+                { key: 'ny', label: 'Нью‑Йорк, США' },
+                { key: 'singapore', label: 'Сингапур' },
+                { key: 'tokyo', label: 'Токио, Япония' },
+                { key: 'saopaulo', label: 'Сан-Паулу, Бразилия' },
+                { key: 'dubai', label: 'Дубай, ОАЭ' },
+                { key: 'telaviv', label: 'Тель-Авив, Израиль' }
+            ];
+
+            // Поиск лучших значений по каждому региону
+            function findBest(regionKey) {
+                var best = Infinity;
+                for (var i = 0; i < providers.length; i++) {
+                    var val = providers[i][regionKey];
+                    if (val !== undefined && val < best) best = val;
+                }
+                return best;
+            }
+
+            var bestValues = {};
+            for (var r = 0; r < regions.length; r++) {
+                bestValues[regions[r].key] = findBest(regions[r].key);
+            }
+
+            // Заполнение таблицы
+            var tbody = document.getElementById('tableBody');
+            if (tbody) {
+                var html = '';
+                for (var p = 0; p < providers.length; p++) {
+                    var prov = providers[p];
+                    html += '<tr><td>' + prov.name + '</td>';
+                    for (var r2 = 0; r2 < regions.length; r2++) {
+                        var key = regions[r2].key;
+                        var val = prov[key];
+                        var isBest = (val === bestValues[key]);
+                        var valStr = val !== undefined ? val.toFixed(3) : '—';
+                        html += '<td' + (isBest ? ' class="best"' : '') + '>' + valStr + '</td>';
+                    }
+                    html += '</tr>';
+                }
+                tbody.innerHTML = html;
+            }
+
+            // Рейтинг (количество побед)
+            var rankData = [
+                { name: 'DDoS-Guard', wins: '3 (Москва, Россия; Нью‑Йорк, США; Токио, Япония)' },
+                { name: 'Yandex Cloud CDN', wins: '1.5 (Санкт-Петербург, Россия и Сан-Паулу, Бразилия – делит с Beeline)' },
+                { name: 'Beeline', wins: '1.5 (Дубай, ОАЭ и Сан-Паулу, Бразилия – делит с Yandex Cloud CDN)' },
+                { name: 'VK Cloud CDN', wins: '1 (Франкфурт, Германия)' },
+                { name: 'Storm Networks', wins: '1 (Сингапур)' },
+                { name: 'CDNnow!', wins: '1 (Тель-Авив, Израиль)' },
+                { name: 'Mitelis', wins: '0' },
+                { name: 'Ngenix', wins: '0' },
+                { name: 'EdgeCenter', wins: '0' },
+                { name: 'Cloud.ru', wins: '0' },
+                { name: 'Servicepipe', wins: '0' },
+                { name: 'mws cloud CDN', wins: '0' }
+            ];
+
+            var rankGrid = document.getElementById('rankGrid');
+            if (rankGrid) {
+                var rankHtml = '';
+                for (var i = 0; i < rankData.length; i++) {
+                    rankHtml += '<div class="rank-item"><span class="provider">' + (i+1) + '. ' + rankData[i].name + '</span><span class="wins">' + rankData[i].wins + '</span></div>';
+                }
+                rankGrid.innerHTML = rankHtml;
+            }
+
+            // Сценарии использования
+            var scenarios = [
+                { label: 'Глобальная аудитория (США, Европа, Азия)', value: 'DDoS-Guard – минимальные задержки почти везде' },
+                { label: 'Основной трафик из России', value: 'Yandex Cloud CDN (Санкт-Петербург – 0.022 с) или Beeline (Москва – 0.027 с)' },
+                { label: 'Центральная Европа (Германия, Польша, Италия)', value: 'VK Cloud CDN – рекордные 0.013 с во Франкфурте' },
+                { label: 'Юго‑Восточная Азия (Сингапур, Индия)', value: 'Storm Networks – отличные показатели' },
+                { label: 'Ближний Восток (Израиль, ОАЭ)', value: 'CDNnow! – лучший в Тель‑Авиве' },
+                { label: 'Бюджетный вариант при хорошей скорости в России и Европе', value: 'Ngenix или Servicepipe' }
+            ];
+
+            var scenarioGrid = document.getElementById('scenarioGrid');
+            if (scenarioGrid) {
+                var scHtml = '';
+                for (var s = 0; s < scenarios.length; s++) {
+                    scHtml += '<div class="scenario-item"><div class="label">' + scenarios[s].label + '</div><div class="value">' + scenarios[s].value + '</div></div>';
+                }
+                scenarioGrid.innerHTML = scHtml;
+            }
+
+            // Темы
+            var themeButtons = document.querySelectorAll('.theme-btn');
+            var root = document.documentElement;
+            var themes = {
+                gold: {
+                    '--bg-body':'#0a0a0a','--bg-card':'rgba(20,18,14,0.65)','--bg-card-hover':'rgba(212,175,55,0.06)',
+                    '--text-primary':'#f5e7c8','--text-secondary':'#e5d9c5','--text-muted':'#b8a58a',
+                    '--accent':'#d4af37','--accent-dim':'rgba(212,175,55,0.18)','--border-color':'rgba(212,175,55,0.25)',
+                    '--shadow-glow':'rgba(212,175,55,0.15)','--code-bg':'#0d0b09','--badge-bg':'rgba(212,175,55,0.12)',
+                    '--badge-border':'rgba(212,175,55,0.25)','--ip-card-bg':'rgba(10,10,10,0.6)',
+                    '--ip-card-border':'rgba(212,175,55,0.15)','--particle-hue':'38',
+                    '--table-header':'#1a1712','--table-row-even':'rgba(20,18,14,0.4)','--table-row-odd':'rgba(10,10,10,0.3)'
+                },
+                platinum: {
+                    '--bg-body':'#121212','--bg-card':'rgba(30,30,35,0.7)','--bg-card-hover':'rgba(192,192,192,0.06)',
+                    '--text-primary':'#f0f0f0','--text-secondary':'#d0d0d0','--text-muted':'#a0a0a0',
+                    '--accent':'#c0c0c0','--accent-dim':'rgba(192,192,192,0.2)','--border-color':'rgba(192,192,192,0.25)',
+                    '--shadow-glow':'rgba(192,192,192,0.1)','--code-bg':'#1a1a1a','--badge-bg':'rgba(192,192,192,0.08)',
+                    '--badge-border':'rgba(192,192,192,0.2)','--ip-card-bg':'rgba(20,20,20,0.6)',
+                    '--ip-card-border':'rgba(192,192,192,0.12)','--particle-hue':'0',
+                    '--table-header':'#222','--table-row-even':'rgba(40,40,40,0.4)','--table-row-odd':'rgba(20,20,20,0.3)'
+                },
+                aurora: {
+                    '--bg-body':'#0b1117','--bg-card':'rgba(20,35,50,0.65)','--bg-card-hover':'rgba(100,180,220,0.06)',
+                    '--text-primary':'#e0f0ff','--text-secondary':'#b0d0e8','--text-muted':'#7899b0',
+                    '--accent':'#6bb8e8','--accent-dim':'rgba(107,184,232,0.2)','--border-color':'rgba(107,184,232,0.25)',
+                    '--shadow-glow':'rgba(107,184,232,0.15)','--code-bg':'#0a151f','--badge-bg':'rgba(107,184,232,0.08)',
+                    '--badge-border':'rgba(107,184,232,0.2)','--ip-card-bg':'rgba(8,18,28,0.6)',
+                    '--ip-card-border':'rgba(107,184,232,0.12)','--particle-hue':'200',
+                    '--table-header':'#0e1a2a','--table-row-even':'rgba(20,35,50,0.4)','--table-row-odd':'rgba(10,20,30,0.3)'
+                },
+                dark: {
+                    '--bg-body':'#0a0808','--bg-card':'rgba(30,20,20,0.7)','--bg-card-hover':'rgba(180,120,80,0.06)',
+                    '--text-primary':'#e8d5c0','--text-secondary':'#c0a890','--text-muted':'#806a5a',
+                    '--accent':'#b08050','--accent-dim':'rgba(176,128,80,0.2)','--border-color':'rgba(176,128,80,0.25)',
+                    '--shadow-glow':'rgba(176,128,80,0.1)','--code-bg':'#150e0a','--badge-bg':'rgba(176,128,80,0.08)',
+                    '--badge-border':'rgba(176,128,80,0.2)','--ip-card-bg':'rgba(16,10,8,0.6)',
+                    '--ip-card-border':'rgba(176,128,80,0.12)','--particle-hue':'30',
+                    '--table-header':'#1a100a','--table-row-even':'rgba(40,25,18,0.4)','--table-row-odd':'rgba(20,12,8,0.3)'
+                },
+                light: {
+                    '--bg-body':'#f5efe8','--bg-card':'rgba(255,250,240,0.7)','--bg-card-hover':'rgba(200,180,160,0.06)',
+                    '--text-primary':'#3d352a','--text-secondary':'#4a4035','--text-muted':'#7a6a5a',
+                    '--accent':'#b09070','--accent-dim':'rgba(176,144,112,0.2)','--border-color':'rgba(176,144,112,0.25)',
+                    '--shadow-glow':'rgba(176,144,112,0.1)','--code-bg':'#e5ddd0','--badge-bg':'rgba(176,144,112,0.08)',
+                    '--badge-border':'rgba(176,144,112,0.2)','--ip-card-bg':'rgba(255,248,240,0.6)',
+                    '--ip-card-border':'rgba(176,144,112,0.12)','--particle-hue':'35',
+                    '--table-header':'#e0d5c8','--table-row-even':'rgba(240,235,225,0.4)','--table-row-odd':'rgba(255,250,240,0.3)'
+                }
+            };
+
+            function setTheme(themeName) {
+                var palette = themes[themeName];
+                if (!palette) return;
+                for (var key in palette) {
+                    if (palette.hasOwnProperty(key)) {
+                        root.style.setProperty(key, palette[key]);
+                    }
+                }
+                for (var i = 0; i < themeButtons.length; i++) {
+                    themeButtons[i].classList.remove('active');
+                }
+                document.querySelector('.theme-btn[data-theme="' + themeName + '"]').classList.add('active');
+            }
+
+            for (var i = 0; i < themeButtons.length; i++) {
+                themeButtons[i].addEventListener('click', function() {
+                    setTheme(this.dataset.theme);
+                });
+            }
+
+            setTheme('gold');
+        })();
+    </script>
+</body>
+</html>
